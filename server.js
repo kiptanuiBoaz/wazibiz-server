@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
+const {calculateOrderAmount} = require("./lib/orderAmount");
 
 const app = express();
 app.use(cors());
@@ -11,19 +12,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to eShop website.");
 });
 
-const array = [];
-const calculateOrderAmount = (items) => {
-  items.map((item) => {
-    const { price, cartQuantity } = item;
-    const cartItemAmount = price * cartQuantity;
-    return array.push(cartItemAmount);
-  });
-  const totalAmount = array.reduce((a, b) => {
-    return a + b;
-  }, 0);
 
-  return totalAmount * 100;
-};
+
 
 app.post("/create-payment-intent", async (req, res) => {
   const { items, shipping, description } = req.body;
@@ -54,6 +44,14 @@ app.post("/create-payment-intent", async (req, res) => {
     clientSecret: paymentIntent.client_secret,
   });
 });
+
+app.post("/mpesa-payment",(req,res)=>{
+  const {items,phone} =req.body;
+  console.log(items,phone)
+  amount: calculateOrderAmount(items)
+  console.log(calculateOrderAmount(items))
+  res.send("Mpesa listeninig...")
+})
 
 const PORT = process.env.PORT || 4242;
 app.listen(PORT, () => console.log(`Node server listening on port ${PORT}`));
