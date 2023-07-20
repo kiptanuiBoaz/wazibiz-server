@@ -5,8 +5,7 @@ const postStk = async (req, res) => {
     const shortCode = 174379;
     const phone = req.body.phone.substring(1);
     //calculate the amount using libary
-    const amount = calculateOrderAmount(req.body.items)/140;
-    console.log(amount)
+    const amount = Math.floor(calculateOrderAmount(req.body.items) / 140);
     const passkey = process.env.passkey;
 
     const url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
