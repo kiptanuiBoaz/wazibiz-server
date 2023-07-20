@@ -22,7 +22,7 @@ const postStk = async (req, res) => {
         ("0" + date.getSeconds()).slice(-2);
 
     const password = new Buffer.from(shortCode + passkey + timestamp).toString("base64");
-
+console.log(process.env.TransactionType)
     const data = {
         BusinessShortCode: shortCode,
         Password: password,
