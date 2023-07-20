@@ -2,8 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const mpesaPayRoute = require("./routes/mpesa");
-const stripePayRoute = require("./routes/stripe");
 
 app.use(cors());
 app.use(express.json());
@@ -13,10 +11,10 @@ app.get("/", (req, res) => {
 });
 
 //stripe pay route
-app.post("/create-payment-intent", stripePayRoute);
+app.use("/stripe-payment", require("./routes/stripe.js"));
 
 //create token 
-app.use("/mpesa-payment", mpesaPayRoute);
+app.use("/mpesa-payment", require("./routes/mpesa.js"));
 
 
 const PORT = process.env.PORT || 4242;
