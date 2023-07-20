@@ -1,4 +1,5 @@
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
+require("dotenv").config();
 const { calculateOrderAmount } = require("../lib/orderAmount");
 
 const stripePay = async (req, res) => {

@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { calculateOrderAmount } = require("../lib/orderAmount");
+require("dotenv").config();
 
 const postStk = async (req, res) => {
     const shortCode = 174379;
@@ -43,7 +44,6 @@ const postStk = async (req, res) => {
             },
         })
         .then((data) => {
-            // console.log(data);
             res.status(200).json(data.data);
         })
         .catch((err) => {
