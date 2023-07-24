@@ -31,7 +31,7 @@ const postStk = async (req, res) => {
         PartyA: `254${phone}`,
         PartyB: 174379,
         PhoneNumber: `254${phone}`,
-        CallBackURL: "https://mydomain.com/path",
+        CallBackURL: "https://wazibiz-server.onrender.com/mpesa-payment/result",
         AccountReference: "Mpesa Test",
         TransactionDesc: "Testing stk push",
     };
@@ -43,6 +43,8 @@ const postStk = async (req, res) => {
             },
         })
         .then((data) => {
+            //verify transaction
+    
             res.status(200).json(data.data);
         })
         .catch((err) => {
