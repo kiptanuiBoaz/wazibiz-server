@@ -17,10 +17,10 @@ const createToken = async (req, res, next) => {
             token = data.data.access_token;
             next();
         })
-        
+
         .catch((err) => {
             console.log("here is the error")
-            console.log(err);
+            console.log(err.message);
             res.status(400).json(err.message);
         });
 };
