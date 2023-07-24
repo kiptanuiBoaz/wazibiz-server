@@ -5,5 +5,5 @@ const { createToken } = require("../middleware/createToken");
 const { mpesaResult } = require("../controllers/mpesaResultController");
 
 router.post("/", createToken, postStk);
-router.get("/result", mpesaResult);
+router.post("/result", mpesaResult);
 module.exports = router;
