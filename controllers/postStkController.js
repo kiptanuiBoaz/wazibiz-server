@@ -31,7 +31,7 @@ const postStk = async (req, res) => {
         PartyA: `254${phone}`,
         PartyB: 174379,
         PhoneNumber: `254${phone}`,
-        CallBackURL: "https://wazibiz-server.onrender.com/mpesa-payment/result",
+        CallBackURL: "https://mydomain.com/path",
         AccountReference: "Mpesa Test",
         TransactionDesc: "Testing stk push",
     };
