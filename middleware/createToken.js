@@ -17,6 +17,7 @@ const createToken = async (req, res, next) => {
             token = data.data.access_token;
             next();
         })
+        
         .catch((err) => {
             console.log("here is the error")
             console.log(err);
